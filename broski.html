@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.broski — everyone has one.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coral: #e8593c;
+      --dark: #3b3634;
+      --cream: #f5f0e8;
+      --cream-dark: #ede7da;
+      --text-muted: #9a9390;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      mix-blend-mode: normal;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+    }
+
+    .nav-dot {
+      width: 10px; height: 10px;
+      background: var(--coral);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .nav-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: -0.3px;
+    }
+
+    .nav-name.dark { color: var(--dark); }
+
+    .nav-ig {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 1px;
+      opacity: 0.7;
+      transition: opacity .2s;
+    }
+
+    .nav-ig:hover { opacity: 1; }
+    .nav-ig.dark { color: var(--dark); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-circle {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: rgba(232, 89, 60, 0.06);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero-bg-circle-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(245, 240, 232, 0.03);
+      bottom: -80px; left: -60px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp .8s ease both;
+    }
+
+    .hero-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero-dot {
+      width: 22px; height: 22px;
+      background: var(--coral);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-size: clamp(64px, 10vw, 110px);
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: -3px;
+      line-height: 1;
+    }
+
+    .hero-tagline {
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 4px;
+      margin-top: 8px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll span {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: var(--cream);
+    }
+
+    /* ── MANIFESTO ── */
+    .manifesto {
+      padding: 120px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--coral);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .manifesto-text p {
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--dark);
+      margin-bottom: 32px;
+    }
+
+    .manifesto-text p strong {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .manifesto-text .punch {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    .manifesto-text .sign {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--coral);
+      margin-top: 48px;
+      letter-spacing: 1px;
+    }
+
+    /* ── HISTÓRIA ── */
+    .historia {
+      background: var(--dark);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .historia::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(232, 89, 60, 0.05);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+
+    .historia-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .historia .section-label { color: var(--coral); }
+
+    .historia-text p {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(245, 240, 232, 0.75);
+      margin-bottom: 28px;
+    }
+
+    .historia-text p strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .historia-text .question {
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 600;
+      color: var(--cream);
+      margin-top: 48px;
+      font-style: italic;
+    }
+
+    /* ── PRODUTOS ── */
+    .produtos {
+      padding: 120px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .produto-card {
+      background: var(--cream-dark);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .2s;
+    }
+
+    .produto-card:hover { transform: translateY(-4px); }
+
+    .produto-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #e2dbd0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .produto-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .produto-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.3;
+    }
+
+    .produto-placeholder-dot {
+      width: 12px; height: 12px;
+      background: var(--coral);
+      border-radius: 50%;
+    }
+
+    .produto-placeholder span {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--dark);
+      text-transform: uppercase;
+    }
+
+    .produto-info {
+      padding: 20px 24px 24px;
+    }
+
+    .produto-nome {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .produto-preco {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    /* ── ENCOMENDAS ── */
+    .encomendas {
+      background: var(--coral);
+      padding: 120px 48px;
+      text-align: center;
+    }
+
+    .encomendas h2 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .encomendas p {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(245, 240, 232, 0.8);
+      margin-bottom: 48px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cream);
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 100px;
+      transition: all .2s;
+      letter-spacing: 0.5px;
+    }
+
+    .ig-btn:hover {
+      background: var(--dark);
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    .ig-btn svg { width: 18px; height: 18px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-dot {
+      width: 10px; height: 10px;
+      background: var(--coral);
+      border-radius: 50%;
+    }
+
+    .footer-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .footer-tagline {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-right a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .footer-right a:hover { color: var(--cream); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .manifesto, .historia { padding: 80px 24px; }
+      .historia-inner { padding: 0; }
+      .produtos { padding: 80px 24px; }
+      .encomendas { padding: 80px 24px; }
+      footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+      .footer-right { text-align: center; }
+      .produtos-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .produtos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <div class="nav-dot"></div>
+      <span class="nav-name" id="nav-name">broski</span>
+    </a>
+    <a href="https://instagram.com/broski.pt" target="_blank" class="nav-ig" id="nav-ig">@broski.pt</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle-2"></div>
+    <div class="hero-content">
+      <div class="hero-logo">
+        <div class="hero-dot"></div>
+        <div class="hero-name">broski</div>
+      </div>
+      <div class="hero-tagline">everyone has one.</div>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="section-label reveal">manifesto</div>
+    <div class="manifesto-text">
+      <p class="reveal">Há uma palavra para aquela pessoa que não é só família, nem é só amigo.</p>
+      <p class="reveal">Às vezes é um primo ou uma prima. Um amigo ou uma amiga.</p>
+      <p class="reveal">Alguém que apareceu na tua vida e ficou. Alguém que é família, de sangue ou não.</p>
+      <p class="punch reveal">Não há nome melhor para isto do que <strong>Broski.</strong></p>
+      <p class="reveal">Sim, é engraçado. Sim, pode parecer infantil. E esse é o ponto todo. Porque, afinal de contas, é com o teu/a tua Broski que podes ser quem tu quiseres, sem julgamentos.</p>
+      <div class="sign reveal">.broski, everyone has one.</div>
+    </div>
+  </section>
+
+  <!-- HISTÓRIA -->
+  <section class="historia">
+    <div class="historia-inner">
+      <div class="section-label reveal">a nossa história</div>
+      <div class="historia-text">
+        <p class="reveal">O meu primo começou a chamar-me <strong>"Bro"</strong>, de "Bro" passou a <strong>"Broski"</strong> e não há explicação para o "Broski". Simplesmente achou graça ao nome e ficou.</p>
+        <p class="reveal">Somos primos com um ano de diferença, ele mais novo, eu mais velha. Eu, filha única, e ele, o caçula de três irmãos, 8 anos mais novo do que a irmã do meio. Crescemos juntos, vizinhos durante anos e com uma ligação como se de irmãos nos tratássemos.</p>
+        <p class="reveal">Hoje — e ainda como se fôssemos os dois putos que passavam as férias de verão a andar de bicicleta, a fingir que trabalhavam num talho com bifes e almôndegas de lama e que montaram uma barraca na beira da rua para vender brinquedos — trocamos snaps para "manter a chama", falamos sempre que ele vem à terrinha e continuamos a contar um com o outro para celebrar conquistas e chorar derrotas.</p>
+        <p class="reveal">A Broski nasce desta ligação inquebrável e cheia de memórias que nos caracteriza.</p>
+        <p class="question reveal">E desse lado? Quem é o teu/a tua Broski?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS -->
+  <section class="produtos">
+    <div class="section-label reveal">os nossos produtos</div>
+
+    <div class="produtos-grid">
+
+      <div class="produto-card reveal">
+        <div class="produto-img">
+          <!-- Substitui por: <img src="mockup-sweat.jpg" alt="Sweat Broski"> -->
+          <div class="produto-placeholder">
+            <div class="produto-placeholder-dot"></div>
+            <span>em breve</span>
+          </div>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Sweat</div>
+          <div class="produto-preco">em breve</div>
+        </div>
+      </div>
+
+      <div class="produto-card reveal">
+        <div class="produto-img">
+          <div class="produto-placeholder">
+            <div class="produto-placeholder-dot"></div>
+            <span>em breve</span>
+          </div>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">T-shirt</div>
+          <div class="produto-preco">em breve</div>
+        </div>
+      </div>
+
+      <div class="produto-card reveal">
+        <div class="produto-img">
+          <div class="produto-placeholder">
+            <div class="produto-placeholder-dot"></div>
+            <span>em breve</span>
+          </div>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Boné</div>
+          <div class="produto-preco">em breve</div>
+        </div>
+      </div>
+
+      <div class="produto-card reveal">
+        <div class="produto-img">
+          <div class="produto-placeholder">
+            <div class="produto-placeholder-dot"></div>
+            <span>em breve</span>
+          </div>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Meias</div>
+          <div class="produto-preco">em breve</div>
+        </div>
+      </div>
+
+      <div class="produto-card reveal">
+        <div class="produto-img">
+          <div class="produto-placeholder">
+            <div class="produto-placeholder-dot"></div>
+            <span>em breve</span>
+          </div>
+        </div>
+        <div class="produto-info">
+          <div class="produto-nome">Tote Bag</div>
+          <div class="produto-preco">em breve</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ENCOMENDAS -->
+  <section class="encomendas">
+    <h2 class="reveal">queres o teu?</h2>
+    <p class="reveal">Para encomendas, fala connosco diretamente pelo Instagram. Respondemos a tudo.</p>
+    <a href="https://instagram.com/broski.pt" target="_blank" class="ig-btn reveal">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      @broski.pt
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">
+        <div class="footer-dot"></div>
+        <div class="footer-name">broski</div>
+      </div>
+      <div class="footer-tagline" style="margin-top:4px; margin-left:18px;">everyone has one.</div>
+    </div>
+    <div class="footer-right">
+      <a href="https://instagram.com/broski.pt" target="_blank">@broski.pt</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav color change on scroll
+    const nav = document.getElementById('nav');
+    const navName = document.getElementById('nav-name');
+    const navIg = document.getElementById('nav-ig');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight * 0.8) {
+        nav.style.background = 'rgba(245, 240, 232, 0.95)';
+        nav.style.backdropFilter = 'blur(12px)';
+        navName.classList.add('dark');
+        navIg.classList.add('dark');
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        navName.classList.remove('dark');
+        navIg.classList.remove('dark');
+      }
+    });
+  </script>
+
+</body>
+</html>
